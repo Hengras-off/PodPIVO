@@ -1,68 +1,69 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Плеер фильма</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        #player-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            padding: 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Плеер фильма</title>
 
-        #kinobd {
-            width: 90%;
-            max-width: 700px;
-            aspect-ratio: 16 / 9;
-        }
+  <style>
+    #player-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      padding: 20px;
+    }
 
-        @media (max-width: 768px) {
-            #player-section {
-                padding: 10px;
-            }
-        }
-    </style>
+    #kinobd {
+      width: 90%;
+      max-width: 700px;
+      aspect-ratio: 16 / 9;
+    }
+
+    @media (max-width: 768px) {
+      #player-section {
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
-<body>
 
-<header>
+<body>
+  <header>
     <div class="logo">𝘗𝘰𝘥𝘗𝘐𝘝𝘖</div>
     <nav class="top-right-nav">
-        <a href="index.html">Поиск</a>
-        <a href="info.html">Помощь</a>
+      <a href="index.html">Поиск</a>
+      <a href="info.html">Помощь</a>
     </nav>
-</header>
+  </header>
 
-<main>
+  <main>
     <section id="player-section">
 
-        <div id="kinobd"></div>
-
-        <script>
-            const urlParams = new URLSearchParams(window.location.search);
-            const kinopoiskId = urlParams.get('kp');
-
-            if (kinopoiskId) {
-                const playerDiv = document.getElementById('kinobd');
-                playerDiv.setAttribute('data-kinopoisk', kinopoiskId);
-            } else {
-                alert('ID Кинопоиска не найден.');
-            }
-        </script>
-
-        <script src="https://kinobd.net/js/player_.js"></script>
+      <!-- Плеер KinoBD -->
+      <div id="kinobd"></div>
 
     </section>
-</main>
+  </main>
 
-<footer>
+  <footer>
     <p>&copy; 2024 PodPIVO. Все права защищены.</p>
-</footer>
+  </footer>
 
+  <!-- KinoBD -->
+  <script src="https://kinobd.net/js/player_.js"></script>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const kpId = params.get('kp');
+
+    if (kpId) {
+      document.getElementById('kinobd')
+        .setAttribute('data-kinopoisk', kpId);
+    } else {
+      alert('ID Кинопоиска не найден');
+    }
+  </script>
 </body>
 </html>
